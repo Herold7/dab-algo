@@ -1,6 +1,6 @@
 # Algorithme DAB
 
-Conception d'un algorithme de DAB ¹, sous forme de pseudo-code.
+Conception d'un algorithme de DAB¹, sous forme de pseudo-code.
 
   *¹Distributeur Automatique de billets*
 
@@ -11,6 +11,7 @@ Le client insère la carte dans le distributeur
 Le processus de vérification de la carte est lancé
     SI la carte n'est pas conforme
         ALORS le distributeur rejette la carte
+        Le programme s'arrête
     SINON SI la carte est bloquée 
         ALORS le distributeur avale la carte
         Le programme s'arrête
