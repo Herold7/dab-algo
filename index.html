@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 align="center">Retrait DAB</h1>
+    <p align = "center">
+        Veuillez cliquer sur le bouton ci-dessous pour retirer de l'argent
+    </p>
+    <button onclick="cardChecker">Commencer</button>
+
+    <div class="app"></div>
+
+    <script>
+        // Variables
+        const clientBalance = 1200
+        const atmBalance = 1200
+        const passCard = 9513
+        const app = document.querySelector(".app")
+
+
+        // functions
+        /* type de carte de l'app : 
+            1 : CB Valide
+            2 : CB Non valide
+            3 : CB Bloquée
+        */
+        // function cardChecker() {
+        //     if (card === 2 || card != 1) {
+        //         if (card === 2) {
+        //             app.innerText = 'CB Bloquée'
+        //         } else {
+        //             app.innerText = 'CB Non valide'
+        //         }
+        //     } else { 
+        //         passChecker()
+                
+        //     }
+        // }
+
+        
+        function cardChecker() {
+            let card = parseInt(prompt('Choisissez une carte : 1, 2,  ou 3'))
+
+            if (isNaN(card) || card >= 4) {
+                app.innerText = "Votre saisie n'est pas valide";
+            } else if (card === 2) {
+                app.innerText = 'CB Non valide';
+            } else if (card === 3) {
+                app.innerText = 'CB Bloquée';
+            } else {
+                passChecker()
+            }
+        }
+
+    
+
+        function passChecker() {
+            app.innerText = 'CB valide'
+            for (let index = 0; index < 3; index++) {
+                let passPrompt = parseInt(prompt('Saisissez votre code'))
+                if (passPrompt === passCard) {
+                    index = 3
+                    amountChoice()
+                }
+            }
+        }
+
+        // function passChecker() {
+        //     app.innerText = 'CB valide'
+        //     let passPrompt = parseInt(prompt('Saisissez votre code'))
+            i=0
+        //     while (i<3){
+                i++
+                if (passPrompt != passCard) {
+                    app.innerText = "CB Bloquée"
+            }
+        }
+        
+        for (let i = 0; i < 3; i++) {
+        //         if {
+                        
+        //         }                   
+                        amountChoice ;
+                        if (i) {
+                            
+                        }
+                
+        //     }     
+
+
+
+        function amountChoice() {
+            app.innerText = "Combien voulez-vous retirez ?"
+        }
+
+
+
+        // App
+        cardChecker()
+
+    </script>
+</body>
+
+</html>

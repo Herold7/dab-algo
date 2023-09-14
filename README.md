@@ -30,5 +30,23 @@ Le client tape un code
     SINON
     Le code est correct
     Lancer la demande du montant à retirer
-    
-    
+Le distributeur affiche un message "demandant de choisir un montant à retirer"
+Le processus de vérification de solde du client est lancé
+    SI le montant > que le solde || (ou) le montant > plafond
+        le retrait est refusé
+        le distributeur affiche un message
+        Le distributeur relance la demande du montant à retirer
+    SINON 
+        Le retrait est autorisé
+        Le processus de vérification de solde du DAB est lancé
+            SI le montant > le solde
+                Le retrait est refusé
+                Le distributeur affiche un message 
+                Le distributeur relance la demande du montant à retirer
+            SINON
+                Le retrait est autorisé
+                Le distributeur remet le montant choisi
+Le client récupère sa carte bancaire
+Le client récupère l'argent du distributeur
+Fin du programme
+```
