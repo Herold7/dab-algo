@@ -9,10 +9,10 @@
 
 <body>
     <h1 align="center">Retrait DAB</h1>
-    <p align = "center">
+    <p align="center">
         Veuillez cliquer sur le bouton ci-dessous pour retirer de l'argent
     </p>
-    <button onclick="cardChecker">Commencer</button>
+    <button onclick="cardChecker()">Commencer</button>
 
     <div class="app"></div>
 
@@ -39,11 +39,11 @@
         //         }
         //     } else { 
         //         passChecker()
-                
+
         //     }
         // }
 
-        
+
         function cardChecker() {
             let card = parseInt(prompt('Choisissez une carte : 1, 2,  ou 3'))
 
@@ -58,51 +58,46 @@
             }
         }
 
-    
 
-        function passChecker() {
-            app.innerText = 'CB valide'
-            for (let index = 0; index < 3; index++) {
-                let passPrompt = parseInt(prompt('Saisissez votre code'))
-                if (passPrompt === passCard) {
-                    index = 3
-                    amountChoice()
-                }
-            }
-        }
 
         // function passChecker() {
         //     app.innerText = 'CB valide'
-        //     let passPrompt = parseInt(prompt('Saisissez votre code'))
-            i=0
-        //     while (i<3){
-                i++
+        //     for (let index = 0; index < 3; index++) {
+        //         let passPrompt = parseInt(prompt('Saisissez votre code'))
+        //         if (passPrompt === passCard) {
+        //             index = 3
+        //             amountChoice()
+        //         }
+        //     }
+        // }
+
+        function passChecker() {
+            app.innerText = 'CB valide';
+            i = 0
+            while (i < 3) {
+                let passPrompt = parseInt(prompt('Saisissez votre code'))
                 if (passPrompt != passCard) {
-                    app.innerText = "CB Bloquée"
-            }
-        }
-        
-        for (let i = 0; i < 3; i++) {
-        //         if {
-                        
-        //         }                   
-                        amountChoice ;
-                        if (i) {
-                            
-                        }
+                    app.innerText = "Veuillez retaper votre code"
+                    if (i = 3) {
+                        app.innerText = "CB Bloquée"
+                    }
+                    amountChoice;
+                }
                 
-        //     }     
-
-
-
-        function amountChoice() {
-            app.innerText = "Combien voulez-vous retirez ?"
+            }
+            i++
         }
 
 
 
-        // App
-        cardChecker()
+                function amountChoice() {
+                    app.innerText = "Combien voulez-vous retirez ?"
+                }
+
+
+
+                // App
+                cardChecker()
 
     </script>
 </body>
