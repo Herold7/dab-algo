@@ -3,17 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DAB</title>
 </head>
 
 <body>
     <h1 align="center">Retrait DAB</h1>
-    <p align="center">
-        Veuillez cliquer sur le bouton ci-dessous pour retirer de l'argent
-    </p>
-    <button onclick="cardChecker()">Commencer</button>
-
+    <div align="center">
+        <p>
+            Veuillez cliquer sur le bouton ci-dessous pour retirer de l'argent
+        </p>
+        <button onclick="cardChecker()">Commencer</button>
+    </div>
     <div class="app"></div>
 
     <script>
@@ -23,81 +25,68 @@
         const passCard = 9513
         const app = document.querySelector(".app")
 
-
-        // functions
-        /* type de carte de l'app : 
-            1 : CB Valide
-            2 : CB Non valide
-            3 : CB Bloquée
+        /*
+        * Cette fonction permet de vérifier la validité de la carte :
+        * À l'aide d'une condition nous allons vérifier que la carte
+        * est 2 ou 1. Tous les autres scénario seront "CB Non valide".
+        * Lorsqu le résultat est 1 on lance la fonction passChecker()
         */
-        // function cardChecker() {
-        //     if (card === 2 || card != 1) {
-        //         if (card === 2) {
-        //             app.innerText = 'CB Bloquée'
-        //         } else {
-        //             app.innerText = 'CB Non valide'
-        //         }
-        //     } else { 
-        //         passChecker()
-
-        //     }
-        // }
-
-
         function cardChecker() {
-            let card = parseInt(prompt('Choisissez une carte : 1, 2,  ou 3'))
+            let card = parseInt(prompt('Choisissez une carte : 1, 2 ou 3'))
 
-            if (isNaN(card) || card >= 4) {
-                app.innerText = "Votre saisie n'est pas valide";
-            } else if (card === 2) {
-                app.innerText = 'CB Non valide';
-            } else if (card === 3) {
-                app.innerText = 'CB Bloquée';
-            } else {
+            if (card === 2 || card != 1) {
+                if (card === 2) {
+                    app.innerText = 'CB Bloquée'
+                } else {
+                    app.innerText = 'CB Non valide'
+                }
+            }
+            else {
                 passChecker()
             }
         }
 
-
-
-        // function passChecker() {
-        //     app.innerText = 'CB valide'
-        //     for (let index = 0; index < 3; index++) {
-        //         let passPrompt = parseInt(prompt('Saisissez votre code'))
-        //         if (passPrompt === passCard) {
-        //             index = 3
-        //             amountChoice()
-        //         }
-        //     }
-        // }
-
+        /* 
+        * Cette fonction permet de vérifier le code de la carte :
+        * À l'aide d'une boucle nous allons permettre 3 essais
+        * Si un des 3 essais est valide, on met le compte de la boucle
+        * au maximum afin de l'arrêter et on lance la fonction pour
+        * choisir le montant à retirer.
+        */
         function passChecker() {
-            app.innerText = 'CB valide';
-            i = 0
-            while (i < 3) {
+            app.innerText = 'CB Valide'
+            for (let index = 0; index < 3; index++) {
                 let passPrompt = parseInt(prompt('Saisissez votre code'))
-                if (passPrompt != passCard) {
-                    app.innerText = "Veuillez retaper votre code"
-                    if (i = 3) {
-                        app.innerText = "CB Bloquée"
-                    }
-                    amountChoice;
+                if (passPrompt === passCard) {
+                    index = 3
+                    amountChoice()
                 }
-                
             }
-            i++
         }
 
-
-
-                function amountChoice() {
-                    app.innerText = "Combien voulez-vous retirez ?"
+        /*
+        * Cette fonction permet de choisir le montant à retirer.
+        * Nous allons permettre uniquement les nombre entiers :
+        * 20, 50, 100, 200, 500, 1000
+        * Si le montant est supérieur au solde du client, on affiche 
+        * un message. Une fois le montant choisi, on vérifie que le
+        * montant est inférieur au solde du DAB. Si c'est le cas, on
+        * permet le retrait et on affiche un message. Sinon, on affiche
+        * un message d'erreur.
+        */
+        function amountChoice() {
+            app.innerText = 'Combien voulez-vous retirer ?'
+            let amount = parseInt(prompt('Choisissez un montant : 20, 50, 100, 200, 500, 1000'))
+            if (amount > clientBalance) {
+                app.innerText = 'Solde insuffisant'
+            } else {
+                if (amount > atmBalance) {
+                    app.innerText = 'Solde du DAB insuffisant'
+                } else {
+                    app.innerText = 'Retrait de ' + amount + '€'
                 }
-
-
-
-                // App
-                cardChecker()
+            }
+        }
 
     </script>
 </body>
